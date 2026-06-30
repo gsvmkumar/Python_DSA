@@ -1,25 +1,30 @@
 package Graph;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
-public class DFS {
-    public static List<Integer> dfs(GraphList g, int source) {
+public class BFS {
+
+    public static List<Integer> bfs(GraphList g, int source) {
 
         HashMap<Integer, ArrayList<Integer>> graph = g.getGraph();
         boolean[] visited = new boolean[g.getVertices()];
-        Stack<Integer> st = new Stack<>();
+        Queue<Integer> queue = new LinkedList<>();
         List<Integer> result = new ArrayList<>();
-        st.push(source);
+
+        queue.offer(source);
         visited[source] = true;
-        while (!st.isEmpty()) {
-            int curr = st.pop();
+        while(!queue.isEmpty()) {
+            int curr = queue.poll();
             result.add(curr);
             for (int neighbour : graph.get(curr)) {
                 if (!visited[neighbour]) {
-                    st.push(neighbour);
                     visited[neighbour] = true;
+                    queue.offer(neighbour);
+
                 }
             }
         }

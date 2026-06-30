@@ -1,4 +1,4 @@
-package DSA.Graph;
+package Undirected;
 
 public class Graph1 {
 
